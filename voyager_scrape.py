@@ -1,5 +1,7 @@
 import mechanize
 import cookielib
+from BeautifulSoup import BeautifulSoup
+import scraperwiki
 
 # the form
 url = 'http://voyager.gsfc.nasa.gov/heliopause/recenthist.html'
@@ -39,5 +41,14 @@ r = br.open(url)
 br.select_form(nr=0)
 br.submit()
 page =  br.response().read()
+soup = BeautifulSoup(page)
 
-	
+# update scraperwiki
+for line in soup.find('pre').text.split("\n")[2:]: # the first 2 lines are cruft
+	data = {
+		'Time' : line.split()[0],
+		'Counts_per_Second' : line.split()[1],
+		'Error' : line.split()[2]
+	}
+	scraperwiki.sqlite.save(unique_keys=['Time'], data=data)
+

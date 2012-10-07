@@ -1,9 +1,12 @@
-This script submits this form and grabs the resulting page:
+This script submits this data search form and grabs the resulting page:
 
 Voyager Recent 6-Hour History
 http://voyager.gsfc.nasa.gov/heliopause/recenthist.html
 
+run it and/or grab the data at ScraperWiki:
+https://scraperwiki.com/scrapers/voyager_cosmic_ray_subsystem_data/
 
 Today I learned to spoof a browser with Mechanize! 
 http://stockrt.github.com/p/emulating-a-browser-in-python-with-mechanize/
+
 
