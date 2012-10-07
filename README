@@ -6,9 +6,6 @@ http://voyager.gsfc.nasa.gov/heliopause/recenthist.html
 grab the data at ScraperWiki:
 https://scraperwiki.com/scrapers/voyager_cosmic_ray_subsystem_data/
 
-also via http request:
-https://api.scraperwiki.com/api/1.0/datastore/sqlite?format=jsondict&name=voyager_cosmic_ray_subsystem_data&query=select%20*%20from%20%60swdata%60%20limit%2010
-
 This form wanted a cookie so TIL to spoof a browser with Mechanize! 
 http://stockrt.github.com/p/emulating-a-browser-in-python-with-mechanize/
 
