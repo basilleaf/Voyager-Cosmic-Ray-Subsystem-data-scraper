@@ -1,27 +1,43 @@
-import urllib
-import urllib2
+import mechanize
+import cookielib
 
-url = 'http://voyager.gsfc.nasa.gov/cgi-bin/heliopause_all'
-user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:15.0) Gecko/20100101 Firefox/15.0.1'
+# the form
+url = 'http://voyager.gsfc.nasa.gov/heliopause/recenthist.html'
 values = {
-		  'average' : '6hour',
-    	  'syear' : '9999',
-		  'smonth' : '9999',
-		  'sday' : '9999',
-		  'eyear' : '9999',
-		  'emonth' : '9999',
-		  'eday' : '9999',
-          'sat' : '1',
-          'mnemonic' : '%3E+70+MeV%2Fnuc+Ions',
           'duration' : '3-months',
           'outputType' : 'list',
           'timeFormat' : 'ISO'
           }
-headers = { 'User-Agent' : user_agent }
 
-data = urllib.urlencode(values)
-req = urllib2.Request(url, data, headers)
-response = urllib2.urlopen(req)
-the_page = response.read()          
+# Browser
+br = mechanize.Browser()
+
+# Cookie Jar
+cj = cookielib.LWPCookieJar()
+br.set_cookiejar(cj)
+
+# Browser options
+br.set_handle_equiv(True)
+br.set_handle_gzip(True)
+br.set_handle_redirect(True)
+br.set_handle_referer(True)
+br.set_handle_robots(False)
+
+# Follows refresh 0 but not hangs on refresh > 0
+br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+
+# Want debugging messages?
+br.set_debug_http(True)
+br.set_debug_redirects(True)
+br.set_debug_responses(True)
+
+# User-Agent (this is cheating, ok?)
+br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
+
+# get it!
+r = br.open(url)
+br.select_form(nr=0)
+br.submit()
+page =  br.response().read()
 
 	

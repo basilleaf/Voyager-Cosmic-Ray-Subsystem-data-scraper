@@ -1,3 +1,9 @@
-trying to get the result page from this cgi form but it's not working. halp? do I has to send the browser cookie too?
+This script submits this form and grabs the resulting page:
 
+Voyager Recent 6-Hour History
 http://voyager.gsfc.nasa.gov/heliopause/recenthist.html
+
+
+Today I learned to spoof a browser with Mechanize! 
+http://stockrt.github.com/p/emulating-a-browser-in-python-with-mechanize/
+
