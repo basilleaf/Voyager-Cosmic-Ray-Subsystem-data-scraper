@@ -4,8 +4,10 @@ from BeautifulSoup import BeautifulSoup
 import scraperwiki
 
 # the form
+#average=6hour&syear=9999&smonth=9999&sday=9999&eyear=9999&emonth=9999&eday=9999&sat=2&mnemonic=%3E+70+MeV%2Fnuc+Ions&duration=3-months&outputType=list&timeFormat=ISO
 url = 'http://voyager.gsfc.nasa.gov/heliopause/recenthist.html'
 values = {
+		  'sat' : '1',  # which Voyager, 1 or 2
           'duration' : '3-months',
           'outputType' : 'list',
           'timeFormat' : 'ISO'
